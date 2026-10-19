@@ -103,31 +103,22 @@
             opacity: 1;
             transform: scale(1) translateY(0);
         }
-
-        /* Certificate hover overlay */
-        .cert-overlay {
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
-        .cert-card:hover .cert-overlay {
-            opacity: 1;
-        }
     </style>
 </head>
 <body class="font-jakarta text-slate-900 antialiased">
 
     <!-- NAVBAR -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 py-5 bg-transparent transition-all duration-300">
-        <div class="container mx-auto px-6 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
             <a href="#hero" class="flex items-center gap-2.5">
                 <img src="./webitechlogo1.png" alt="WebiTech Logo" class="w-9 h-9 rounded-lg object-cover shadow-card">
                 <span class="font-extrabold text-lg tracking-tight text-slate-900">WebiTech</span>
             </a>
 
             <div class="hidden md:flex items-center gap-8">
+                <a href="#hero" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Home</a>
                 <a href="#about" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">About</a>
                 <a href="#skills" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Skills</a>
-                <a href="#certifications" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Certifications</a>
                 <a href="#projects" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Projects</a>
                 <a href="#contact" class="text-sm font-bold px-5 py-2.5 rounded-full bg-slate-900 text-white hover:bg-black hover:shadow-lg hover:shadow-slate-900/15 hover:-translate-y-0.5 transition-all">Contact Us</a>
             </div>
@@ -138,9 +129,9 @@
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-slate-100 px-6 py-4 space-y-2">
+            <a href="#hero" class="block py-2.5 text-sm font-semibold text-slate-700 hover:text-slate-900">Home</a>
             <a href="#about" class="block py-2.5 text-sm font-semibold text-slate-700 hover:text-slate-900">About</a>
             <a href="#skills" class="block py-2.5 text-sm font-semibold text-slate-700 hover:text-slate-900">Skills</a>
-            <a href="#certifications" class="block py-2.5 text-sm font-semibold text-slate-700 hover:text-slate-900">Certifications</a>
             <a href="#projects" class="block py-2.5 text-sm font-semibold text-slate-700 hover:text-slate-900">Projects</a>
             <a href="#contact" class="bg-slate-950 hover:bg-slate-800 text-white font-medium px-5 py-2.5 rounded-full text-center inline-block transition-colors mt-2">Contact Us</a>
         </div>
@@ -361,79 +352,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CERTIFICATIONS SECTION -->
-    <section id="certifications" class="py-16 md:py-24 bg-white border-y border-slate-100 relative">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400 mb-3 block">CREDENTIALS</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">Certifications</h2>
-                <p class="text-slate-600 text-base mt-4">Verified training across the core technologies we build with every day.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <a href="./html-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
-                    <div class="relative">
-                        <img src="./html-cert.jpg" alt="HTML Certification" class="w-full h-56 object-cover">
-                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
-                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">HTML Certification</h3>
-                </a>
-
-                <a href="./css-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
-                    <div class="relative">
-                        <img src="./css-cert.jpg" alt="CSS Certification" class="w-full h-56 object-cover">
-                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
-                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">CSS Certification</h3>
-                </a>
-
-                <a href="./js-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
-                    <div class="relative">
-                        <img src="./js-cert.jpg" alt="JavaScript Certification" class="w-full h-56 object-cover">
-                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
-                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">JavaScript Certification</h3>
-                </a>
-
-                <a href="./react-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
-                    <div class="relative">
-                        <img src="./react-cert.jpg" alt="React Certification" class="w-full h-56 object-cover">
-                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
-                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">React Certification</h3>
-                </a>
-
-                <a href="./mysql-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
-                    <div class="relative">
-                        <img src="./mysql-cert.jpg" alt="MySQL Certification" class="w-full h-56 object-cover">
-                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
-                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">MySQL Certification</h3>
-                </a>
-
-                <a href="./python-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
-                    <div class="relative">
-                        <img src="./python-cert.jpg" alt="Python Certification" class="w-full h-56 object-cover">
-                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
-                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">Python Certification</h3>
-                </a>
             </div>
         </div>
     </section>
