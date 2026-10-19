@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebiTech — Modern Web Development Agency</title>
+    <meta name="description" content="WebiTech is a modern web development startup agency building fast, beautiful and scalable digital products.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 4px 16px rgba(15, 23, 42, 0.06)',
+                        'floating': '0 16px 40px rgba(15, 23, 42, 0.12)',
+                        'glow': '0 0 32px rgba(15, 23, 42, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./webitechlogo1.png">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f8fafc;
+        }
+
+        /* Modern custom scrollbar (Webkit browsers) */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fafbfc;
+            overflow-x: hidden;
+        }
+
+        /* Navbar glass effect */
+        .glass-nav {
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        /* Tech stack marquee */
+        .marquee-mask {
+            -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+        }
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            gap: 1rem;
+            animation: smoothMarquee 25s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes smoothMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Modal animation */
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.92) translateY(16px);
+            transition: all 0.25s ease;
+        }
+        .modal-active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Certificate hover overlay */
+        .cert-overlay {
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .cert-card:hover .cert-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-jakarta text-slate-900 antialiased">
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 py-5 bg-transparent transition-all duration-300">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-2.5">
+                <img src="./webitechlogo1.png" alt="WebiTech Logo" class="w-9 h-9 rounded-lg object-cover shadow-card">
+                <span class="font-extrabold text-lg tracking-tight text-slate-900">WebiTech</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">About</a>
+                <a href="#skills" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Skills</a>
+                <a href="#certifications" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Certifications</a>
+                <a href="#projects" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Projects</a>
+                <a href="#contact" class="text-sm font-bold px-5 py-2.5 rounded-full bg-slate-900 text-white hover:bg-black hover:shadow-lg hover:shadow-slate-900/15 hover:-translate-y-0.5 transition-all">Contact Us</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-slate-900 hover:bg-slate-100 rounded-lg transition-colors">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-slate-100 px-6 py-4 space-y-2">
+            <a href="#about" class="block py-2.5 text-sm font-semibold text-slate-700 hover:text-slate-900">About</a>
+            <a href="#skills" class="block py-2.5 text-sm font-semibold text-slate-700 hover:text-slate-900">Skills</a>
+            <a href="#certifications" class="block py-2.5 text-sm font-semibold text-slate-700 hover:text-slate-900">Certifications</a>
+            <a href="#projects" class="block py-2.5 text-sm font-semibold text-slate-700 hover:text-slate-900">Projects</a>
+            <a href="#contact" class="block py-2.5 text-sm font-bold text-slate-900">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative pt-28 md:pt-32 pb-12 md:pb-16">
+        <div class="container mx-auto px-6 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                    We Build Fast, Beautiful & Scalable Digital Products
+                </h1>
+
+                <p class="mt-6 text-slate-600 text-base sm:text-lg leading-relaxed text-justify [word-spacing:0.1rem]">
+                    WebiTech is a modern web development startup agency helping businesses, founders and creators launch premium websites, web apps and online stores. From elegant marketing sites to full-scale platforms, we combine clean design, solid engineering and AI-driven rapid execution to ship products that perform.
+                </p>
+
+                <div class="mt-6 flex items-center justify-center">
+                    <span class="inline-flex flex-wrap items-center justify-center gap-2.5 px-5 py-2 rounded-full bg-white border border-slate-200/80 shadow-card text-xs font-bold text-slate-700 tracking-wide">
+                        Web Development <span class="text-slate-300">•</span> E-Commerce <span class="text-slate-300">•</span> Custom Web Apps
+                    </span>
+                </div>
+
+                <div class="mt-8 flex items-center justify-center">
+                    <a href="#projects" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-slate-900 text-white font-bold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-slate-900/10 hover:bg-black hover:-translate-y-0.5 hover:shadow-xl hover:shadow-slate-900/20">
+                        Explore Our Projects
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- TECH STACK MARQUEE -->
+            <div class="mt-14">
+                <p class="text-center text-xs font-extrabold uppercase tracking-widest text-slate-400 mb-5">Technologies We Work With</p>
+                <div class="marquee-mask overflow-hidden">
+                    <div class="marquee-track">
+                        <!-- Set 1 -->
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" class="w-5 h-5" alt="HTML5"><span class="text-xs font-semibold text-slate-700">HTML5</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" class="w-5 h-5" alt="CSS3"><span class="text-xs font-semibold text-slate-700">CSS3</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" class="w-5 h-5" alt="JavaScript"><span class="text-xs font-semibold text-slate-700">JavaScript</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" class="w-5 h-5" alt="React"><span class="text-xs font-semibold text-slate-700">React</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" class="w-5 h-5" alt="Tailwind CSS"><span class="text-xs font-semibold text-slate-700">Tailwind</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" class="w-5 h-5" alt="Node.js"><span class="text-xs font-semibold text-slate-700">Node.js</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" class="w-5 h-5" alt="Python"><span class="text-xs font-semibold text-slate-700">Python</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0"><svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#8E75B8" role="img" aria-label="Google Gemini"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"></path></svg><span class="text-xs font-semibold text-slate-700">Google Gemini</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0"><svg class="w-5 h-5 shrink-0 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="OpenCode AI"><rect x="2.5" y="3.5" width="19" height="17" rx="3.5"></rect><path d="m7.5 9 2.75 2.5L7.5 14M13 14.5h4"></path></svg><span class="text-xs font-semibold text-slate-700">OpenCode AI</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0"><svg class="w-5 h-5 shrink-0 text-slate-900" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="GitHub"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg><span class="text-xs font-semibold text-slate-700">GitHub</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0"><img src="https://cdn.simpleicons.org/vercel/000000" class="w-5 h-5" alt="Vercel"><span class="text-xs font-semibold text-slate-700">Vercel</span></div>
+                        <!-- Set 2 (duplicate for seamless loop) -->
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" class="w-5 h-5" alt=""><span class="text-xs font-semibold text-slate-700">HTML5</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" class="w-5 h-5" alt=""><span class="text-xs font-semibold text-slate-700">CSS3</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" class="w-5 h-5" alt=""><span class="text-xs font-semibold text-slate-700">JavaScript</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" class="w-5 h-5" alt=""><span class="text-xs font-semibold text-slate-700">React</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" class="w-5 h-5" alt=""><span class="text-xs font-semibold text-slate-700">Tailwind</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" class="w-5 h-5" alt=""><span class="text-xs font-semibold text-slate-700">Node.js</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" class="w-5 h-5" alt=""><span class="text-xs font-semibold text-slate-700">Python</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0" aria-hidden="true"><svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#8E75B8" role="img" aria-label="Google Gemini"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"></path></svg><span class="text-xs font-semibold text-slate-700">Google Gemini</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0" aria-hidden="true"><svg class="w-5 h-5 shrink-0 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="OpenCode AI"><rect x="2.5" y="3.5" width="19" height="17" rx="3.5"></rect><path d="m7.5 9 2.75 2.5L7.5 14M13 14.5h4"></path></svg><span class="text-xs font-semibold text-slate-700">OpenCode AI</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0" aria-hidden="true"><svg class="w-5 h-5 shrink-0 text-slate-900" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="GitHub"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg><span class="text-xs font-semibold text-slate-700">GitHub</span></div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-card shrink-0" aria-hidden="true"><img src="https://cdn.simpleicons.org/vercel/000000" class="w-5 h-5" alt=""><span class="text-xs font-semibold text-slate-700">Vercel</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-12 md:py-16 relative">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400 mb-3 block">ABOUT US</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">A Modern Web Development Startup Agency</h2>
+                <p class="text-slate-600 text-base mt-4 text-center leading-relaxed">
+                    WebiTech was founded with one goal: give every business access to world-class websites and web apps without enterprise costs or slow timelines. We pair strong design fundamentals with modern tooling and AI-assisted workflows to deliver fast.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Pillar 1 -->
+                <div class="bg-white p-7 rounded-2xl border border-slate-200/80 shadow-card flex flex-col justify-between hover:shadow-floating transition-shadow">
+                    <div>
+                        <div class="w-11 h-11 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-5">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h10a2 2 0 002-2v-3a2 2 0 00-2-2h-2m-6 0h6m-6 0V5a2 2 0 012-2h2a2 2 0 012 2v3m-6 6h6"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Design-First Approach</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Every project starts with clean, modern UI design — spacing, typography and motion that make brands look premium and build instant trust.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-white p-7 rounded-2xl border border-slate-200/80 shadow-card flex flex-col justify-between hover:shadow-floating transition-shadow">
+                    <div>
+                        <div class="w-11 h-11 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-5">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Performance & Scalability</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            We build with responsive layouts, optimized assets and reliable deployments on Vercel and Netlify so your product grows without breaking.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-white p-7 rounded-2xl border border-slate-200/80 shadow-card flex flex-col justify-between hover:shadow-floating transition-shadow">
+                    <div>
+                        <div class="w-11 h-11 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-5">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">AI-Driven Rapid Execution</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            AI tools powered by Gemini, ChatGPT and Claude accelerate research, code and content — cutting delivery time while keeping quality high.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS / TECH STACK SECTION -->
+    <section id="skills" class="py-12 md:py-16 bg-slate-50 border-y border-slate-100 relative">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400 mb-3 block">AI-POWERED ENGINEERING</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">AI-Assisted Development &amp; Workflows</h2>
+                <p class="text-slate-600 text-base mt-4">Leveraging advanced AI models and modern CI/CD tools to accelerate software delivery.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Frontend -->
+                <div class="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/80 shadow-card hover:shadow-floating hover:-translate-y-1 hover:border-slate-300/80 transition-all duration-300">
+                    <div class="flex items-center gap-3.5 mb-7">
+                        <div class="w-11 h-11 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center ring-1 ring-inset ring-sky-100">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg">Frontend Development</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" class="w-6 h-6 shrink-0" alt="HTML5"> HTML5 & Semantic Markup
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" class="w-6 h-6 shrink-0" alt="CSS3"> CSS3 & Modern Layouts
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" class="w-6 h-6 shrink-0" alt="JavaScript"> JavaScript (ES6+)
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" class="w-6 h-6 shrink-0" alt="React"> React & Component UIs
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" class="w-6 h-6 shrink-0" alt="Tailwind"> Tailwind CSS Styling
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Backend -->
+                <div class="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/80 shadow-card hover:shadow-floating hover:-translate-y-1 hover:border-slate-300/80 transition-all duration-300">
+                    <div class="flex items-center gap-3.5 mb-7">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center ring-1 ring-inset ring-emerald-100">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 5.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg">Backend & Data</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" class="w-6 h-6 shrink-0" alt="Node.js"> Node.js Services
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" class="w-6 h-6 shrink-0" alt="Python"> Python Scripts & APIs
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" class="w-6 h-6 shrink-0" alt="MySQL"> MySQL Databases
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <img src="https://cdn.simpleicons.org/googleappsscript/4285F4" class="w-6 h-6 shrink-0" alt="Google Apps Script"> Google Apps Script Automation
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <img src="https://cdn.simpleicons.org/googlesheets/34A853" class="w-6 h-6 shrink-0" alt="Google Sheets"> Google Sheets as Database
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- AI -->
+                <div class="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/80 shadow-card hover:shadow-floating hover:-translate-y-1 hover:border-slate-300/80 transition-all duration-300">
+                    <div class="flex items-center gap-3.5 mb-7">
+                        <div class="w-11 h-11 rounded-xl bg-[#f3e8ff] flex items-center justify-center ring-1 ring-inset ring-violet-100">
+                            <img src="./aiwithworkflowlogo.png" alt="AI-Assisted Development Logo" class="w-6 h-6 object-contain">
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg">AI-Assisted Development &amp; Workflows</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="#8E75B8" role="img" aria-label="Google Gemini"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"></path></svg> Google Gemini
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <svg class="w-6 h-6 shrink-0 text-slate-900" viewBox="0 0 256 260" fill="currentColor" role="img" aria-label="OpenAI"><path d="M239.183914,106.202783 C245.054304,88.5242096 243.02228,69.1733805 233.607599,53.0998864 C219.451678,28.4588021 190.999703,15.7836129 163.213007,21.739505 C147.554077,4.32145883 123.794909,-3.42398554 100.87901,1.41873898 C77.9631105,6.26146349 59.3690093,22.9572536 52.0959621,45.2214219 C33.8436494,48.9644867 18.0901721,60.392749 8.86672513,76.5818033 C-5.443491,101.182962 -2.19544431,132.215255 16.8986662,153.320094 C11.0060865,170.990656 13.0197283,190.343991 22.4238231,206.422991 C36.5975553,231.072344 65.0680342,243.746566 92.8695738,237.783372 C105.235639,251.708249 123.001113,259.630942 141.623968,259.52692 C170.105359,259.552169 195.337611,241.165718 204.037777,214.045661 C222.28734,210.296356 238.038489,198.869783 247.267014,182.68528 C261.404453,158.127515 258.142494,127.262775 239.183914,106.202783 L239.183914,106.202783 Z M141.623968,242.541207 C130.255682,242.559177 119.243876,238.574642 110.519381,231.286197 L112.054146,230.416496 L163.724595,200.590881 C166.340648,199.056444 167.954321,196.256818 167.970781,193.224005 L167.970781,120.373788 L189.815614,133.010026 C190.034132,133.121423 190.186235,133.330564 190.224885,133.572774 L190.224885,193.940229 C190.168603,220.758427 168.442166,242.484864 141.623968,242.541207 Z M37.1575749,197.93062 C31.456498,188.086359 29.4094818,176.546984 31.3766237,165.342426 L32.9113895,166.263285 L84.6329973,196.088901 C87.2389349,197.618207 90.4682717,197.618207 93.0742093,196.088901 L156.255402,159.663793 L156.255402,184.885111 C156.243557,185.149771 156.111725,185.394602 155.89729,185.550176 L103.561776,215.733903 C80.3054953,229.131632 50.5924954,221.165435 37.1575749,197.93062 Z M23.5493181,85.3811273 C29.2899861,75.4733097 38.3511911,67.9162648 49.1287482,64.0478825 L49.1287482,125.438515 C49.0891492,128.459425 50.6965386,131.262556 53.3237748,132.754232 L116.198014,169.025864 L94.3531808,181.662102 C94.1132325,181.789434 93.8257461,181.789434 93.5857979,181.662102 L41.3526015,151.529534 C18.1419426,138.076098 10.1817681,108.385562 23.5493181,85.125333 L23.5493181,85.3811273 Z M203.0146,127.075598 L139.935725,90.4458545 L161.7294,77.8607748 C161.969348,77.7334434 162.256834,77.7334434 162.496783,77.8607748 L214.729979,108.044502 C231.032329,117.451747 240.437294,135.426109 238.871504,154.182739 C237.305714,172.939368 225.050719,189.105572 207.414262,195.67963 L207.414262,134.288998 C207.322521,131.276867 205.650697,128.535853 203.0146,127.075598 Z M224.757116,94.3850867 L223.22235,93.4642272 L171.60306,63.3828173 C168.981293,61.8443751 165.732456,61.8443751 163.110689,63.3828173 L99.9806554,99.8079259 L99.9806554,74.5866077 C99.9533004,74.3254088 100.071095,74.0701869 100.287609,73.9215426 L152.520805,43.7889738 C168.863098,34.3743518 189.174256,35.2529043 204.642579,46.0434841 C220.110903,56.8340638 227.949269,75.5923959 224.757116,94.1804513 L224.757116,94.3850867 Z M88.0606409,139.097931 L66.2158076,126.512851 C65.9950399,126.379091 65.8450965,126.154176 65.8065367,125.898945 L65.8065367,65.684966 C65.8314495,46.8285367 76.7500605,29.6846032 93.8270852,21.6883055 C110.90411,13.6920079 131.063833,16.2835462 145.5632,28.338998 L144.028434,29.2086986 L92.3579852,59.0343142 C89.7419327,60.5687513 88.1282597,63.3683767 88.1117998,66.4011901 L88.0606409,139.097931 Z M99.9294965,113.5185 L128.06687,97.3011417 L156.255402,113.5185 L156.255402,145.953218 L128.169187,162.170577 L99.9806554,145.953218 L99.9294965,113.5185 Z"></path></svg> ChatGPT (OpenAI)
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <svg class="w-6 h-6 shrink-0 text-slate-900" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Anthropic"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"></path></svg> Claude AI (Anthropic)
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <svg class="w-6 h-6 shrink-0 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="OpenCode AI"><rect x="2.5" y="3.5" width="19" height="17" rx="3.5"></rect><path d="m7.5 9 2.75 2.5L7.5 14M13 14.5h4"></path></svg> OpenCode AI Coding Agent
+                        </li>
+                        <li class="flex items-center gap-3.5 text-sm font-medium text-slate-700 bg-slate-50/80 border border-slate-100 rounded-xl px-4 py-3 hover:bg-white hover:border-slate-200 hover:shadow-card transition-all">
+                            <svg class="w-6 h-6 shrink-0 text-slate-900" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="GitHub"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg> Git & CI Workflows
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS SECTION -->
+    <section id="certifications" class="py-16 md:py-24 bg-white border-y border-slate-100 relative">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400 mb-3 block">CREDENTIALS</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">Certifications</h2>
+                <p class="text-slate-600 text-base mt-4">Verified training across the core technologies we build with every day.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="./html-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
+                    <div class="relative">
+                        <img src="./html-cert.jpg" alt="HTML Certification" class="w-full h-56 object-cover">
+                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">HTML Certification</h3>
+                </a>
+
+                <a href="./css-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
+                    <div class="relative">
+                        <img src="./css-cert.jpg" alt="CSS Certification" class="w-full h-56 object-cover">
+                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">CSS Certification</h3>
+                </a>
+
+                <a href="./js-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
+                    <div class="relative">
+                        <img src="./js-cert.jpg" alt="JavaScript Certification" class="w-full h-56 object-cover">
+                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">JavaScript Certification</h3>
+                </a>
+
+                <a href="./react-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
+                    <div class="relative">
+                        <img src="./react-cert.jpg" alt="React Certification" class="w-full h-56 object-cover">
+                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">React Certification</h3>
+                </a>
+
+                <a href="./mysql-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
+                    <div class="relative">
+                        <img src="./mysql-cert.jpg" alt="MySQL Certification" class="w-full h-56 object-cover">
+                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">MySQL Certification</h3>
+                </a>
+
+                <a href="./python-cert.jpg" target="_blank" rel="noopener noreferrer" class="cert-card group block bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-floating transition-all">
+                    <div class="relative">
+                        <img src="./python-cert.jpg" alt="Python Certification" class="w-full h-56 object-cover">
+                        <div class="cert-overlay absolute inset-0 bg-slate-950/60 flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold shadow-lg">View Certificate</span>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-center py-4 px-4">Python Certification</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-12 md:py-16 relative">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400 mb-3 block">SELECTED WORK</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">Featured Projects</h2>
+                <p class="text-slate-600 text-base mt-4">Live products shipped by WebiTech across e-commerce, hospitality, healthcare and fintech.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                    <a href="https://lureiaccessories.vercel.app/" target="_blank" rel="noopener noreferrer" class="block shrink-0">
+                        <div class="h-52 bg-slate-50 flex items-center justify-center p-6">
+                            <img src="./Lureï Luxury Jewelry Emblem.png" alt="LUREÏ Fine Jewellery" class="max-h-full max-w-full object-contain">
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="self-start px-3 py-1 rounded-full bg-slate-100 text-[11px] font-extrabold uppercase tracking-widest text-slate-500">E-Commerce · Luxury Retail</span>
+                        <h3 class="font-bold text-slate-900 text-lg mt-3 mb-2.5">LUREÏ Fine Jewellery</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed text-left flex-1">
+                            An elegant online boutique for handcrafted fine jewellery, featuring a refined product catalog, smooth browsing experience and a premium brand identity.
+                        </p>
+                        <div class="border-t border-slate-100 pt-3 mt-4">
+                            <a href="https://lureiaccessories.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-slate-600 transition-colors group">
+                                <span>View Live Site</span> <span class="ml-1.5 group-hover:translate-x-0.5 transition-transform">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                    <a href="https://safi-global-traders.vercel.app/" target="_blank" rel="noopener noreferrer" class="block shrink-0">
+                        <div class="h-52 bg-slate-50 flex items-center justify-center p-6">
+                            <img src="./safi.jpg" alt="SAFI Global Traders" class="max-h-full max-w-full object-contain">
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="self-start px-3 py-1 rounded-full bg-slate-100 text-[11px] font-extrabold uppercase tracking-widest text-slate-500">Corporate · Global Trading</span>
+                        <h3 class="font-bold text-slate-900 text-lg mt-3 mb-2.5">SAFI Global Traders</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed text-left flex-1">
+                            Corporate website for an import–export trading company, built to present services, product categories and global partnerships with credibility.
+                        </p>
+                        <div class="border-t border-slate-100 pt-3 mt-4">
+                            <a href="https://safi-global-traders.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-slate-600 transition-colors group">
+                                <span>View Live Site</span> <span class="ml-1.5 group-hover:translate-x-0.5 transition-transform">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                    <a href="https://safeengram.neocities.org/restaurant/" target="_blank" rel="noopener noreferrer" class="block shrink-0">
+                        <div class="h-52 bg-slate-50 flex items-center justify-center p-6">
+                            <img src="./biriyani.jpg" alt="Rafah Biriyani Culture" class="max-h-full max-w-full object-contain">
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="self-start px-3 py-1 rounded-full bg-slate-100 text-[11px] font-extrabold uppercase tracking-widest text-slate-500">Restaurant · Hospitality</span>
+                        <h3 class="font-bold text-slate-900 text-lg mt-3 mb-2.5">Rafah Biriyani Culture</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed text-left flex-1">
+                            A vibrant restaurant website celebrating traditional biriyani, with menu showcases, story sections and mobile-friendly presentation.
+                        </p>
+                        <div class="border-t border-slate-100 pt-3 mt-4">
+                            <a href="https://safeengram.neocities.org/restaurant/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-slate-600 transition-colors group">
+                                <span>View Live Site</span> <span class="ml-1.5 group-hover:translate-x-0.5 transition-transform">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                    <a href="https://safeen-childcare-clinic-app.netlify.app/" target="_blank" rel="noopener noreferrer" class="block shrink-0">
+                        <div class="h-52 bg-slate-50 flex items-center justify-center p-6">
+                            <img src="./clinic.jpg" alt="Child Care Clinic Portal" class="max-h-full max-w-full object-contain">
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="self-start px-3 py-1 rounded-full bg-slate-100 text-[11px] font-extrabold uppercase tracking-widest text-slate-500">Healthcare · Web Portal</span>
+                        <h3 class="font-bold text-slate-900 text-lg mt-3 mb-2.5">Child Care Clinic Portal</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed text-left flex-1">
+                            A friendly healthcare portal for a paediatric clinic, streamlining appointment booking, doctor profiles and patient information access.
+                        </p>
+                        <div class="border-t border-slate-100 pt-3 mt-4">
+                            <a href="https://safeen-childcare-clinic-app.netlify.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-slate-600 transition-colors group">
+                                <span>View Live Site</span> <span class="ml-1.5 group-hover:translate-x-0.5 transition-transform">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full md:col-span-2">
+                    <a href="https://safeenexpensetrackerapp.netlify.app/" target="_blank" rel="noopener noreferrer" class="block shrink-0">
+                        <div class="h-52 bg-slate-50 flex items-center justify-center p-6">
+                            <img src="./expense.jpg" alt="Smart Expense Tracker" class="max-h-full max-w-full object-contain">
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-1">
+                        <span class="self-start px-3 py-1 rounded-full bg-slate-100 text-[11px] font-extrabold uppercase tracking-widest text-slate-500">FinTech · Smart Web App</span>
+                        <h3 class="font-bold text-slate-900 text-lg mt-3 mb-2.5">Smart Expense Tracker</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed text-left flex-1">
+                            Interactive financial management application with real-time budget calculations, spending analytics, and database syncing.
+                        </p>
+                        <div class="border-t border-slate-100 pt-3 mt-4">
+                            <a href="https://safeenexpensetrackerapp.netlify.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-slate-600 transition-colors group">
+                                <span>View Live Site</span> <span class="ml-1.5 group-hover:translate-x-0.5 transition-transform">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-12 md:py-16 bg-slate-50 border-t border-slate-200/80 relative">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400 mb-3 block">LET'S CONNECT</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">Ready to Start Your Project?</h2>
+                <p class="text-slate-600 text-base mt-4">Fill out the form below or email us directly for a fast consultation & quote.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- Quick Info -->
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-card">
+                        <div class="w-10 h-10 bg-slate-900 text-white rounded-xl flex items-center justify-center mb-4 text-lg">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base">Direct Email</h4>
+                        <a href="mailto:webitechbusiness@gmail.com" class="text-slate-900 font-bold text-sm hover:underline">webitechbusiness@gmail.com</a>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-card">
+                        <div class="w-10 h-10 bg-slate-900 text-white rounded-xl flex items-center justify-center mb-4 text-lg">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base">Call / WhatsApp</h4>
+                        <a href="tel:+917708027197" class="text-slate-900 font-bold text-sm hover:underline">+91 7708 027 197</a>
+                    </div>
+                </div>
+
+                <!-- Interactive Form -->
+                <form id="contactForm" class="lg:col-span-2 bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/80 shadow-floating space-y-6">
+                    <input type="hidden" name="access_key" value="6d9e4b3a-c8e9-439c-85f2-aaca4b76c251">
+                    <input type="hidden" name="subject" value="New Webitech Agency Project Inquiry">
+                    <input type="hidden" name="from_name" value="WebiTech Contact Form">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2">Full Name</label>
+                            <input type="text" id="fullName" name="name" required placeholder="Full Name" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 text-sm font-medium transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2">Email Address</label>
+                            <input type="email" id="emailAddress" name="email" required placeholder="client@company.com" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 text-sm font-medium transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2">Project Service Needed</label>
+                        <input type="text" id="serviceNeeded" name="service" required placeholder="e.g. E-Commerce, Custom Web App, SaaS Portal..." class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all text-sm font-medium">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2">Project Scope & Details</label>
+                        <textarea id="projectScope" name="message" rows="4" required placeholder="Describe your project requirements, features, and timeline..." class="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 text-sm font-medium transition-colors"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        <button type="submit" id="sendEmailBtn" class="inline-flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-base font-jakarta transition-all duration-300 shadow-lg shadow-slate-900/10 hover:shadow-xl hover:shadow-slate-900/20 hover:-translate-y-0.5">
+                            📧 Send via Email
+                        </button>
+                        <button type="button" onclick="sendViaWhatsApp()" class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-[#38c4c1] text-white font-semibold text-base font-jakarta transition-all duration-200 hover:brightness-95 shadow-card hover:shadow-lg hover:shadow-teal-500/20">
+                            <svg class="w-5 h-5 mr-2 fill-current inline-block align-middle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+  <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18.1-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18.1-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+</svg>
+                            Send via WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-white border-t border-slate-200 text-center relative">
+        <div class="container mx-auto px-6">
+            <a href="#hero" class="inline-flex items-center gap-2.5 mb-6">
+                <img src="./webitechlogo1.png" alt="WebiTech Logo" class="w-8 h-8 rounded-lg object-cover">
+                <span class="font-extrabold tracking-tight text-slate-900">WebiTech</span>
+            </a>
+            <p class="text-slate-500 text-sm max-w-md mx-auto mb-8">
+                Modern web development startup agency — designing and building digital products that perform.
+            </p>
+            <div class="flex items-center justify-center gap-3 mb-8">
+                <a href="mailto:webitechbusiness@gmail.com" aria-label="Email" class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all">
+                    <i class="fa-solid fa-envelope text-xs"></i>
+                </a>
+                <a href="https://wa.me/917708027197" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                </a>
+                <a href="#hero" aria-label="Back to top" class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all">
+                    <i class="fa-solid fa-arrow-up text-xs"></i>
+                </a>
+            </div>
+            <p class="text-slate-400 text-xs font-medium">© 2026 WebiTech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX MODAL VIEWER (for Projects) -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 transition-all">
+        <div class="bg-white rounded-2xl max-w-3xl w-full p-4 relative shadow-2xl modal-enter" id="lightbox-content">
+            <button onclick="closeLightbox()" class="absolute -top-4 -right-4 w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold shadow-lg hover:bg-black">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Expanded View" class="w-full h-auto max-h-[80vh] object-contain rounded-xl">
+            <h4 id="lightbox-title" class="text-center font-bold text-slate-900 text-base mt-4"></h4>
+        </div>
+    </div>
+
+    <script>
+        // 0. Lenis Ultra-Smooth Momentum Scroll (slow, high-end feel)
+        let lenis = null;
+        if (typeof Lenis !== 'undefined') {
+            lenis = new Lenis({
+                duration: 1.8,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+                wheelMultiplier: 0.8
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        }
+
+        // 1. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = 'fa-solid fa-bars text-lg';
+            } else {
+                menuIcon.className = 'fa-solid fa-xmark text-lg';
+            }
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-lg';
+            });
+        });
+
+        // 2. Navbar Backdrop Blur on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('glass-nav', 'py-3.5', 'shadow-sm');
+                navbar.classList.remove('py-5', 'bg-transparent');
+            } else {
+                navbar.classList.remove('glass-nav', 'py-3.5', 'shadow-sm');
+                navbar.classList.add('py-5', 'bg-transparent');
+            }
+        });
+
+        // 3. Modal Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxTitle = document.getElementById('lightbox-title');
+        const lightboxContent = document.getElementById('lightbox-content');
+
+        function openLightbox(imgSrc, titleText) {
+            lightboxImg.src = imgSrc;
+            lightboxTitle.innerText = titleText;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            setTimeout(() => {
+                lightboxContent.classList.remove('modal-enter');
+                lightboxContent.classList.add('modal-active');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            lightboxContent.classList.remove('modal-active');
+            lightboxContent.classList.add('modal-enter');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+            }, 200);
+        }
+
+        // ESC key closes lightbox
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+                closeLightbox();
+            }
+        });
+
+        // 5. Contact Form Submission - Sends inquiry via Web3Forms to email
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert("Thank you! Your project inquiry has been sent successfully. We will get back to you soon.");
+                    contactForm.reset();
+                } else {
+                    alert("Something went wrong. Please try again or reach out via WhatsApp.");
+                }
+            } catch (error) {
+                alert("Something went wrong. Please try again or reach out via WhatsApp.");
+            }
+        });
+
+        // 6. WhatsApp Handler - Opens WhatsApp with pre-filled inquiry
+        function sendViaWhatsApp() {
+            const name = document.getElementById('fullName')?.value.trim() || '';
+            const email = document.getElementById('emailAddress')?.value.trim() || '';
+            const service = document.getElementById('serviceNeeded')?.value.trim() || '';
+            const scope = document.getElementById('projectScope')?.value.trim() || '';
+
+            if (!name || !email || !service || !scope) {
+                alert('Please fill in all fields before submitting.');
+                return;
+            }
+
+            const messageText = `Hello Webitech Agency! 👋\n\n*New Project Inquiry Details*\n- *Name:* ${name}\n- *Email:* ${email}\n- *Service Needed:* ${service}\n- *Scope & Details:* ${scope}`;
+
+            const whatsappUrl = `https://wa.me/917708027197?text=${encodeURIComponent(messageText)}`;
+            window.open(whatsappUrl, '_blank');
+
+            document.getElementById('contactForm')?.reset();
+        }
+
+        // 7. Ultra-Smooth Anchor Navigation for all navbar & section links (Lenis-powered)
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener('click', (e) => {
+                const hash = anchor.getAttribute('href');
+                if (!hash || hash.length <= 1) return;
+
+                const target = document.querySelector(hash);
+                if (!target) return;
+
+                e.preventDefault();
+                if (lenis) {
+                    lenis.scrollTo(target, { offset: -80 });
+                } else {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                history.pushState(null, '', hash);
+            });
+        });
+    </script>
+</body>
+</html>
